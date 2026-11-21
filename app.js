@@ -1,6 +1,6 @@
 /* Hikmah 2.0 */
 "use strict";
-const VERSION="3.0.2";
+const VERSION="3.0.3";
 const SITE="https://hikmah-sadiq.github.io/";
 const ASK_URL="https://claude.ai/artifact/HnMjVLK1wRDvbunz2gB6Qs#ask";
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -274,7 +274,7 @@ function renderHome(){
      <a class="iconbtn" href="${ASK_URL}" target="_blank" rel="noopener" aria-label="Ask Hikmah">${icon("ask",20)}</a></div>
    <div class="banner" id="install"></div>
    <div class="hello"><div style="flex:1;position:relative;z-index:1"><h1>${hello}</h1><p>${n>=g?"Goal reached today. Keep going if you like.":n?`${g-n} more idea${g-n>1?"s":""} to reach today's goal.`:`Read ${g} ideas today to keep your streak.`}</p></div>
-     <div class="ring"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="32" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><circle cx="38" cy="38" r="32" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}"/></svg><b style="${(n>=g?String(n):n+"/"+g).length>4?"font-size:14px":""}">${n>=g?n:`${n}/${g}`}<small>${n>=g?"done today":"today"}</small></b></div></div>
+     <div class="ring"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="32" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><circle cx="38" cy="38" r="32" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}"/></svg><b style="${(n>=g?String(n):n+"/"+g).length>4?"font-size:14px":""}">${n>=g?n:`${n}/${g}`}<small>${n>=g?"today ✓":"today"}</small></b></div></div>
    ${cont}
    ${iotd?`<button class="iotd" data-k="${iotd.key}"><div class="art">${cover("iotd"+t,byId[iotd.pid].cat,{ratio:"wide"})}<span class="badge">Idea of the day</span></div><div class="txt"><h3>${prov(plainProv(iotd.h))}</h3><p>${esc(plainProv(iotd.body))}</p><div class="from"><span class="dot" style="background:${topicOf(byId[iotd.pid].cat).c1}"></span>${esc(byId[iotd.pid].title)}</div></div></button>`:""}
    <div class="h-sec"><h2>For you today</h2><a href="#you" id="edit-int">Your topics</a></div>
@@ -363,7 +363,7 @@ function renderPkg(id){
     <div class="stats3"><div><b>${ideaCount(p)}</b><small>ideas</small></div><div><b>${readMins(p)}</b><small>min read</small></div><div><b>${d?Math.round(d/60):"–"}</b><small>min listen</small></div></div>
     <div class="cta"><button class="btn color" id="pk-read" style="background:linear-gradient(135deg,${T.c1},${T.c2})">${icon("book",20)} ${pos!=null&&pos>0&&pos<C.length-1?"Continue reading":"Read ideas"}</button>
       <button class="btn primary" id="pk-listen" ${d?"":"disabled"}>${icon("head",20)} ${d?"Listen":"Recording…"}</button></div>
-    <div class="small-row"><button id="pk-off" ${d?"":"disabled"}></button><button id="pk-ask">${icon("spark",18)} Discuss with Claude</button></div>
+    <div class="small-row"><button id="pk-off" ${d?"":"disabled"}></button><button id="pk-ask">${icon("spark",18)} Ask Claude</button></div>
     <div class="h-sec"><h2>What you'll learn</h2></div>
     <div class="learn">${C.filter(c=>c.type!=="intro"&&c.type!=="final").map((c,n)=>`<button data-k="${c.key}"><span class="n" style="background:${T.c1}">${n+1}</span><b>${c.type==="verse"?esc(c.eb)+" · "+c.verses.map(v=>v.s+":"+v.v).join(", "):prov(plainProv(c.h))}</b>${READ[c.key]?'<span class="seen">✓</span>':""}</button>`).join("")}</div>
     <div class="h-sec"><h2>Practices for this week</h2><a class="more" href="#journal">Journal</a></div>
@@ -452,7 +452,8 @@ function renderStash(id){
   const s=id==="__liked"?{id,name:"Liked ideas",cat:"Family",items:Object.keys(LIKES)}:STASHES.find(x=>x.id===id);
   if(!s){location.hash="stashes";return}
   const items=s.items.map(cardByKey).filter(Boolean);
-  $("#stash").innerHTML=`<div class="topbar"><button class="iconbtn" id="st-back" aria-label="Back">${icon("back",20)}</button><h1 style="font-size:24px;font-weight:800;flex:1">${esc(s.name)}</h1>${id!=="saved"&&id!=="__liked"?`<button class="pill soft" id="st-del">Delete</button>`:""}</div>
+  $("#stash").innerHTML=`<div class="topbar"><button class="iconbtn" id="st-back" aria-label="Back">${icon("back",20)}</button><div style="flex:1"></div>${id!=="saved"&&id!=="__liked"?`<button class="pill soft" id="st-del">Delete</button>`:""}</div>
+   <h1 style="font-size:26px;font-weight:800;line-height:1.2;margin:10px 0 0;overflow-wrap:anywhere">${esc(s.name)}</h1>
    <p class="muted" style="margin:6px 0 0">${items.length} idea${items.length===1?"":"s"}</p>
    ${items.length?`<button class="claudebar" id="st-claude">${icon("spark",20)}<span><b>Discuss this stash with Claude</b><small>Connect, deepen, critique or apply these ideas</small></span></button>`:""}
    <div class="saved">${items.map(c=>{const p=byId[c.pid];return `<div class="it"><span class="sw" style="background:${topicOf(p.cat).c1}"></span><button class="main" data-k="${c.key}"><b>${c.type==="verse"?"Qur'an "+c.verses.map(v=>v.s+":"+v.v).join(", "):prov(plainProv(c.h))}</b>${c.body?`<p>${esc(plainProv(c.body))}</p>`:""}<small>${esc(p.title)}</small></button><button class="rm" data-rm="${c.key}" aria-label="Remove">×</button></div>`}).join("")}</div>

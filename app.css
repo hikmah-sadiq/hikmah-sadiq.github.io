@@ -42,8 +42,8 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.01em}
 .hello p{margin:4px 0 0;opacity:.92;font-size:14.5px}
 .ring{width:76px;height:76px;flex:none;position:relative}
 .ring svg{transform:rotate(-90deg)}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:18px;font-weight:800;line-height:1;text-align:center}
-.ring b small{display:block;font-size:10.5px;font-weight:700;opacity:.9;margin-top:2px}
+.ring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:18px;font-weight:800;line-height:1;text-align:center}
+.ring b small{display:block;font-size:10px;font-weight:700;opacity:.9;margin:0;white-space:nowrap}
 
 /* idea of the day */
 .iotd{margin-top:18px;border-radius:26px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow-lg);display:block;width:100%;text-align:left}
@@ -480,3 +480,13 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.01em}
 .ob-top{position:sticky;top:0;z-index:2;display:flex;padding:calc(env(safe-area-inset-top) + 10px) 14px 0;background:linear-gradient(var(--bg) 70%,transparent)}
 .ob-back{width:44px;height:44px;border-radius:50%;background:var(--surface);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--ink);border:0;cursor:pointer}
 .onb .pick~.go{position:sticky;bottom:calc(env(safe-area-inset-bottom) + 12px);margin-top:18px;box-shadow:0 10px 30px rgba(20,16,40,.25)}
+/* card text fades out fully before it reaches the button bar */
+.card .cin{-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 150px),transparent calc(100% - 100px));mask-image:linear-gradient(180deg,#000 calc(100% - 150px),transparent calc(100% - 100px));padding-bottom:calc(env(safe-area-inset-bottom) + 110px)}
+.card.final .cin{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 70px,#000 104px);mask-image:linear-gradient(180deg,transparent 0,transparent 70px,#000 104px)}
+/* in the reader and player, messages appear at the top so they never cover the text */
+body.reader-open .toast{bottom:auto;top:calc(env(safe-area-inset-top) + 74px)}
+.toast{max-width:calc(100vw - 32px);white-space:normal;text-align:center}
+
+.small-row button{min-height:46px;white-space:nowrap}
+.sheet .cta .btn{white-space:nowrap;min-width:0;padding-inline:12px}
+@media (max-width:360px){.sheet .cta .btn{font-size:14px;gap:6px}}
