@@ -2903,5 +2903,199 @@
    "al-Attas",
    "Naquib al-Attas"
   ]
+ },
+ {
+  "id": "oettingen",
+  "name": "Gabriele Oettingen",
+  "years": "b. 1953",
+  "place": "New York University · University of Hamburg",
+  "group": "Modern thinkers",
+  "role": "Psychologist of motivation",
+  "bio": "Born in Munich, Oettingen spent decades studying how thinking about the future affects effort and success. She showed that positive fantasies can sap energy, and developed mental contrasting and the WOOP method.",
+  "achievements": [
+   "Discovered the energy-draining effect of positive fantasies",
+   "Developed mental contrasting and WOOP"
+  ],
+  "works": [
+   [
+    "Rethinking Positive Thinking",
+    "2014"
+   ]
+  ],
+  "aliases": [
+   "Gabriele Oettingen",
+   "Oettingen"
+  ]
+ },
+ {
+  "id": "thoreau",
+  "name": "Henry David Thoreau",
+  "years": "1817–1862",
+  "place": "Concord, Massachusetts, USA",
+  "group": "Modern thinkers",
+  "role": "Essayist and naturalist",
+  "bio": "Thoreau lived for two years in a cabin he built by Walden Pond to test how simply and deliberately a person could live. His writings on simplicity and conscience have influenced readers and reformers ever since.",
+  "achievements": [
+   "Wrote Walden, a classic of American literature",
+   "His essay on civil disobedience influenced later reformers"
+  ],
+  "works": [
+   [
+    "Walden",
+    "1854"
+   ],
+   [
+    "Civil Disobedience",
+    "1849"
+   ]
+  ],
+  "aliases": [
+   "Henry David Thoreau",
+   "Thoreau"
+  ]
+ },
+ {
+  "id": "hanfeizi",
+  "name": "Han Feizi",
+  "years": "c. 280–233 BCE",
+  "place": "State of Han, China",
+  "group": "Asian & Arab voices",
+  "role": "Philosopher of law and statecraft",
+  "bio": "A prince of the state of Han and a student of the Confucian scholar Xunzi, Han Feizi became the leading thinker of the Legalist school. His book is full of short parables, including the farmer who waited by the tree stump.",
+  "achievements": [
+   "Leading voice of Chinese Legalism",
+   "Author of famous parables still used as idioms"
+  ],
+  "works": [
+   [
+    "Han Feizi",
+    "3rd century BCE"
+   ]
+  ],
+  "aliases": [
+   "Han Feizi"
+  ]
+ },
+ {
+  "id": "wangyangming",
+  "name": "Wang Yangming",
+  "years": "1472–1529",
+  "place": "Zhejiang, China",
+  "group": "Asian & Arab voices",
+  "role": "Philosopher, official and general",
+  "bio": "A Ming-dynasty scholar-official who also led armies, Wang Yangming taught that knowledge and action are one and that moral knowing must show itself in conduct. His school shaped thought in China, Korea and Japan.",
+  "achievements": [
+   "Taught the unity of knowledge and action",
+   "One of the most influential Neo-Confucian thinkers"
+  ],
+  "works": [
+   [
+    "Instructions for Practical Living (Chuanxi lu)",
+    "16th century"
+   ]
+  ],
+  "aliases": [
+   "Wang Yangming"
+  ]
+ },
+ {
+  "id": "nasreddin",
+  "name": "Nasreddin Hodja",
+  "years": "traditionally 13th century",
+  "place": "Akşehir, Anatolia (Turkey)",
+  "group": "Asian & Arab voices",
+  "role": "Folk sage and humorist",
+  "bio": "Nasreddin Hodja is the beloved wise fool of Turkish folk tales, told for centuries from the Balkans to Central Asia and known in the Arab world as Juha. His short stories use humour to expose human folly.",
+  "achievements": [
+   "Hero of hundreds of folk tales across many cultures"
+  ],
+  "works": [
+   [
+    "Folk tales (oral tradition)",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Nasreddin Hodja",
+   "Nasreddin"
+  ]
+ },
+ {
+  "id": "mutanabbi",
+  "name": "Al-Mutanabbi",
+  "years": "915–965",
+  "place": "Kufa, Iraq · Aleppo, Syria",
+  "group": "Asian & Arab voices",
+  "role": "Poet",
+  "bio": "Widely regarded as the greatest poet of the Arabic language, al-Mutanabbi served the ruler Sayf al-Dawla in Aleppo. Many of his lines on ambition, pride and fate became proverbs that Arabic speakers still quote.",
+  "achievements": [
+   "Among the most quoted poets in Arabic",
+   "Master of the panegyric and of proverbial verse"
+  ],
+  "works": [
+   [
+    "Diwan al-Mutanabbi",
+    "10th century"
+   ]
+  ],
+  "aliases": [
+   "al-Mutanabbi",
+   "Al-Mutanabbi",
+   "Mutanabbi"
+  ]
+ },
+ {
+  "id": "shawqi",
+  "name": "Ahmad Shawqi",
+  "years": "1868–1932",
+  "place": "Cairo, Egypt",
+  "group": "Asian & Arab voices",
+  "role": "Poet and dramatist",
+  "bio": "Shawqi revived classical Arabic poetry for the modern age and pioneered Arabic poetic drama. In 1927 poets from across the Arab world named him Amir al-Shu'ara', the Prince of Poets.",
+  "achievements": [
+   "Named Prince of Poets in 1927",
+   "Pioneer of Arabic poetic drama"
+  ],
+  "works": [
+   [
+    "Al-Shawqiyyat (collected poems)",
+    ""
+   ],
+   [
+    "Salu Qalbi",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Ahmad Shawqi",
+   "Shawqi"
+  ]
+ },
+ {
+  "id": "odunjo",
+  "name": "J. F. Odunjo",
+  "years": "1904–1980",
+  "place": "Abeokuta, Nigeria",
+  "group": "African voices",
+  "role": "Teacher, poet and Yoruba author",
+  "bio": "Joseph Folahan Odunjo was a teacher and headmaster who wrote poems, novels, plays and the Aláwìíyé reading series that taught generations of Yoruba children to read.",
+  "achievements": [
+   "Author of the Aláwìíyé Yoruba readers",
+   "Wrote the much-loved poem Iṣẹ́ ni oògùn ìṣẹ́"
+  ],
+  "works": [
+   [
+    "Aláwìíyé series",
+    ""
+   ],
+   [
+    "Àkójọpọ̀ ewì aládùn",
+    "1961"
+   ]
+  ],
+  "aliases": [
+   "J. F. Odunjo",
+   "Odunjo"
+  ]
  }
 ]

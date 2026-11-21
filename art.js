@@ -16,10 +16,12 @@ const TOPICS = {
   "Communication & People":  {c1:"#DB2777", c2:"#F9A8D4", ink:"#500724", motifs:["chat","people","bridge","heart"]},
   "Islamic Classics":        {c1:"#166534", c2:"#4ADE80", ink:"#052E16", motifs:["quill","book","lantern","arch"], islamic:true},
   "African Wisdom":          {c1:"#C2410C", c2:"#FB923C", ink:"#431407", motifs:["baobab","drum","sun","people"]},
-  "Asia & the Arab World":   {c1:"#A31621", c2:"#F2C14E", ink:"#3B0A0F", motifs:["mountain","bridge","quill","compass"]}
+  "Asia & the Arab World":   {c1:"#A31621", c2:"#F2C14E", ink:"#3B0A0F", motifs:["mountain","bridge","quill","compass"]},
+  "Dreams & Deeds":          {c1:"#312E81", c2:"#F59E0B", ink:"#1E1B4B", motifs:["cloud","road","hourglass","seedling"]}
 };
 const W = "#FFFFFF";
 const MOTIFS = {
+  cloud:`<path d="M24 56a13 13 0 0 1 5-25 20 20 0 0 1 38-5 15 15 0 0 1 9 30z" fill="${W}"/><path d="M22 92h16V80h16V68h16V56" stroke="${W}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>`,
   book:`<path d="M10 28c14-6 28-6 40 4v52c-12-10-26-10-40-4z" fill="${W}"/><path d="M90 28c-14-6-28-6-40 4v52c12-10 26-10 40-4z" fill="${W}" opacity=".85"/><path d="M50 32v52" stroke="rgba(0,0,0,.15)" stroke-width="2"/>`,
   lantern:`<path d="M44 8h12v8H44z" fill="${W}"/><path d="M50 2v6" stroke="${W}" stroke-width="3"/><path d="M34 22h32l6 14H28z" fill="${W}"/><rect x="32" y="36" width="36" height="38" rx="6" fill="${W}" opacity=".9"/><path d="M40 42h20v26H40z" fill="rgba(255,200,80,.85)"/><path d="M50 46c4 6 4 12 0 18-4-6-4-12 0-18z" fill="#fff6"/><path d="M28 74h44l-6 12H34z" fill="${W}"/>`,
   crescent:`<path d="M58 14a36 36 0 1 0 22 62A30 30 0 1 1 58 14z" fill="${W}"/><path d="M74 24l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z" fill="${W}"/>`,

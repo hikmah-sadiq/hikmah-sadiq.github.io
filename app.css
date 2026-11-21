@@ -490,3 +490,4 @@ body.reader-open .toast{bottom:auto;top:calc(env(safe-area-inset-top) + 74px)}
 .small-row button{min-height:46px;white-space:nowrap}
 .sheet .cta .btn{white-space:nowrap;min-width:0;padding-inline:12px}
 @media (max-width:360px){.sheet .cta .btn{font-size:14px;gap:6px}}
+.card.intro .cin{max-height:calc(100% - 80px - env(safe-area-inset-top))}
