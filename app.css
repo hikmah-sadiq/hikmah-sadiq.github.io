@@ -476,3 +476,7 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.01em}
 .pr-st:empty{display:none}
 
 .jn-link{display:flex;align-items:center;gap:8px;justify-content:center;margin:14px 0 0;color:#fff;font-weight:800;font-size:14px;text-decoration:none;opacity:.95}
+
+.ob-top{position:sticky;top:0;z-index:2;display:flex;padding:calc(env(safe-area-inset-top) + 10px) 14px 0;background:linear-gradient(var(--bg) 70%,transparent)}
+.ob-back{width:44px;height:44px;border-radius:50%;background:var(--surface);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--ink);border:0;cursor:pointer}
+.onb .pick~.go{position:sticky;bottom:calc(env(safe-area-inset-bottom) + 12px);margin-top:18px;box-shadow:0 10px 30px rgba(20,16,40,.25)}

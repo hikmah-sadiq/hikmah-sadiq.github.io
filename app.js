@@ -1,6 +1,6 @@
 /* Hikmah 2.0 */
 "use strict";
-const VERSION="3.0.1";
+const VERSION="3.0.2";
 const SITE="https://hikmah-sadiq.github.io/";
 const ASK_URL="https://claude.ai/artifact/HnMjVLK1wRDvbunz2gB6Qs#ask";
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -290,7 +290,7 @@ function renderHome(){
    <p class="srcnote">${PK.length} packages · ${ALLIDEAS.length} ideas · ${(Object.values(TM).reduce((a,x)=>a+x.dur,0)/3600).toFixed(1)} hours of narration</p>`;
   bindCommon($("#home"));
   $("#cont-read")&&($("#cont-read").onclick=()=>openReader(lastR,pos[lastR]));
-  $("#edit-int").onclick=e=>{e.preventDefault();openOnboarding(1)};
+  $("#edit-int").onclick=e=>{e.preventDefault();openOnboarding(1,true)};
   paintInstall();
 }
 
@@ -507,7 +507,7 @@ function renderYou(){
   $$("#goal-seg button").forEach(b=>b.onclick=()=>{store.set("goal",+b.dataset.v);renderYou()});
   $$("#fs-seg button").forEach(b=>b.onclick=()=>{store.set("fs",+b.dataset.v);applyFs();renderYou()});
   $("#autonext").onchange=e=>store.set("autonext",e.target.checked);
-  $("#edit-topics").onclick=()=>openOnboarding(1);
+  $("#edit-topics").onclick=()=>openOnboarding(1,true);
   $("#sync-row").onclick=openSync;$("#bk-save").onclick=saveBackup;$("#bk-load").onclick=loadBackup;$("#repair").onclick=repairApp;paintSyncRow();$("#dl-all").onclick=downloadAll; $("#dl-clear").onclick=clearDownloads;
   $("#reset-prog").onclick=()=>{openSheet(`<h3>Reset all progress?</h3><p class="muted">Your stashes stay. Reading history, streaks, badges and listening progress are cleared.</p><div class="cta"><button class="btn soft" id="rs-no">Cancel</button><button class="btn primary" id="rs-yes">Reset</button></div>`);$("#rs-no").onclick=closeSheet;$("#rs-yes").onclick=()=>{["read","days","badges","prog","done","pos","completed","listened","lastRead","last","ldays"].forEach(k=>store.set(k,k==="last"||k==="lastRead"?null:{}));store.set("listened",0);raw.set("_others",{});raw.set("_epoch",Date.now());READ={};DAYS={};closeSheet();renderYou();toast("Progress reset")}};
   renderCal();
@@ -764,17 +764,25 @@ async function toggleOffline(id,btn){if(OFF.has(id)){const c=await caches.open(A
 function paintOff(id,btn){btn.classList.toggle("on",OFF.has(id));btn.innerHTML=icon(OFF.has(id)?"check":"down",18)+(OFF.has(id)?" Saved offline":" Save offline")}
 
 /* ---------- ONBOARDING ---------- */
-function openOnboarding(step=0){
+let onbBack=null;
+function openOnboarding(step=0,edit=false){
   const o=$("#onb");o.classList.add("on");let picks=new Set(store.get("interests",[]));let g=goal();
+  const close=(fromPop)=>{o.classList.remove("on");onbBack=null;if(!fromPop&&history.state&&history.state.onb)history.back();route(true)};
+  /* one history entry for the whole overlay: the phone's back button steps back, then closes */
+  const back=(fromPop)=>{if(edit||step===0){if(!edit)store.set("onb",true);close(fromPop)}else{step--;draw();o.scrollTop=0;if(fromPop)history.pushState({onb:1},"")}};
+  onbBack=()=>back(true);history.pushState({onb:1},"");
+  const top=()=>(edit||step>0)?`<div class="ob-top"><button class="ob-back" id="ob-back" aria-label="${edit?"Close":"Back"}">${icon(edit?"x":"back",22)}</button></div>`:"";
   const cats=CAT_ORDER.filter(c=>PK.some(p=>p.cat===c));
   const draw=()=>{
     if(step===0)o.innerHTML=`<div class="art">${cover("welcome","Tafsir",{ratio:"wide",motif:"lantern"})}</div><div class="in"><h1>Welcome to Hikmah</h1><p>Bite-sized wisdom from the Qur'an, the classical scholars, the great thinkers and the great books, read in minutes, or heard with narration and recitation.</p><p>Save the ideas that speak to you into stashes, and build a daily habit of growing wiser.</p><button class="go" id="ob-next">Get started</button></div>`;
-    if(step===1)o.innerHTML=`<div class="in"><h1>What do you want to grow in?</h1><p>Pick a few topics. Your daily feed will lean towards them.</p><div class="pick">${cats.map(c=>{const T=topicOf(c);return `<button aria-pressed="${picks.has(c)}" data-c="${esc(c)}" style="background:linear-gradient(135deg,${T.c1},${T.c2})">${esc(c)}</button>`}).join("")}</div><button class="go" id="ob-next">${picks.size?"Continue":"Skip, show me everything"}</button></div>`;
-    if(step===2)o.innerHTML=`<div class="in"><h1>Set your daily goal</h1><p>How many ideas do you want to read each day? Meeting it keeps your streak alive.</p><div class="goals">${[[3,"Light","About 3 minutes"],[5,"Steady","About 5 minutes"],[10,"Serious","About 10 minutes"],[15,"Intense","About 15 minutes"]].map(([v,n,s])=>`<button aria-pressed="${g===v}" data-v="${v}"><span>${v} ideas a day · ${n}</span><small>${s}</small></button>`).join("")}</div><button class="go" id="ob-next">Start reading</button></div>`;
-    o.querySelectorAll(".pick button").forEach(b=>b.onclick=()=>{const c=b.dataset.c;picks.has(c)?picks.delete(c):picks.add(c);b.setAttribute("aria-pressed",String(picks.has(c)));$("#ob-next").textContent=picks.size?"Continue":"Skip, show me everything"});
+    if(step===1)o.innerHTML=top()+`<div class="in"><h1>What do you want to grow in?</h1><p>Pick a few topics. Your daily feed will lean towards them.</p><div class="pick">${cats.map(c=>{const T=topicOf(c);return `<button aria-pressed="${picks.has(c)}" data-c="${esc(c)}" style="background:linear-gradient(135deg,${T.c1},${T.c2})">${esc(c)}</button>`}).join("")}</div><button class="go" id="ob-next">${edit?"Save topics":picks.size?"Continue":"Skip, show me everything"}</button></div>`;
+    if(step===2)o.innerHTML=top()+`<div class="in"><h1>Set your daily goal</h1><p>How many ideas do you want to read each day? Meeting it keeps your streak alive.</p><div class="goals">${[[3,"Light","About 3 minutes"],[5,"Steady","About 5 minutes"],[10,"Serious","About 10 minutes"],[15,"Intense","About 15 minutes"]].map(([v,n,s])=>`<button aria-pressed="${g===v}" data-v="${v}"><span>${v} ideas a day · ${n}</span><small>${s}</small></button>`).join("")}</div><button class="go" id="ob-next">Start reading</button></div>`;
+    o.querySelectorAll(".pick button").forEach(b=>b.onclick=()=>{const c=b.dataset.c;picks.has(c)?picks.delete(c):picks.add(c);b.setAttribute("aria-pressed",String(picks.has(c)));$("#ob-next").textContent=edit?"Save topics":picks.size?"Continue":"Skip, show me everything"});
     o.querySelectorAll(".goals button").forEach(b=>b.onclick=()=>{g=+b.dataset.v;o.querySelectorAll(".goals button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)))});
+    const bb=$("#ob-back");if(bb)bb.onclick=()=>back(false);
     $("#ob-next").onclick=()=>{if(step===1)store.set("interests",[...picks]);if(step===2)store.set("goal",g);
-      if(step<2){step++;draw();o.scrollTop=0}else{store.set("onb",true);o.classList.remove("on");route(true)}};
+      if(edit){toast("Topics saved");close(false);return}
+      if(step<2){step++;draw();o.scrollTop=0}else{store.set("onb",true);close(false)}};
   };draw();
 }
 
@@ -803,7 +811,7 @@ function route(keepScroll){
   if(!keepScroll)$("#main").scrollTop=0;
 }
 addEventListener("hashchange",()=>route());
-addEventListener("popstate",()=>{if($("#reader").classList.contains("on")&&!(history.state&&history.state.rd)){$("#reader").classList.remove("on");document.body.classList.remove("reader-open");route(true)}if($("#np").classList.contains("on")&&!(history.state&&history.state.np))$("#np").classList.remove("on")});
+addEventListener("popstate",()=>{if($("#onb").classList.contains("on")&&onbBack&&!(history.state&&history.state.onb)){onbBack();return}if($("#reader").classList.contains("on")&&!(history.state&&history.state.rd)){$("#reader").classList.remove("on");document.body.classList.remove("reader-open");route(true)}if($("#np").classList.contains("on")&&!(history.state&&history.state.np))$("#np").classList.remove("on")});
 
 /* ---------- BOOT ---------- */
 applyFs();
