@@ -1,6 +1,6 @@
 /* Hikmah 2.0 */
 "use strict";
-const VERSION="3.0.0";
+const VERSION="3.0.1";
 const SITE="https://hikmah-sadiq.github.io/";
 const ASK_URL="https://claude.ai/artifact/HnMjVLK1wRDvbunz2gB6Qs#ask";
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
