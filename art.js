@@ -18,7 +18,9 @@ const TOPICS = {
   "African Wisdom":          {c1:"#C2410C", c2:"#FB923C", ink:"#431407", motifs:["baobab","drum","sun","people"]},
   "Asia & the Arab World":   {c1:"#A31621", c2:"#F2C14E", ink:"#3B0A0F", motifs:["mountain","bridge","quill","compass"]},
   "Dreams & Deeds":          {c1:"#312E81", c2:"#F59E0B", ink:"#1E1B4B", motifs:["cloud","road","hourglass","seedling"]},
-  "Guarding the Tongue":     {c1:"#0F5257", c2:"#E9C46A", ink:"#062A2D", motifs:["chat","key","scales","quill"]}
+  "Guarding the Tongue":     {c1:"#0F5257", c2:"#E9C46A", ink:"#062A2D", motifs:["chat","key","scales","quill"]},
+  "Progress Over Perfection":{c1:"#9A3412", c2:"#FCD34D", ink:"#431407", motifs:["seedling","road","target","loop"]},
+  "Joy Within Limits":       {c1:"#1D4ED8", c2:"#FDBA74", ink:"#172554", motifs:["sun","drum","scales","heart"]}
 };
 const W = "#FFFFFF";
 const MOTIFS = {

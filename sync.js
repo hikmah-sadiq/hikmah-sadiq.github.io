@@ -6,9 +6,9 @@ const G_SCOPE="https://www.googleapis.com/auth/drive.appdata", G_FILE="hikmah-sy
 const SYNC_ON=()=>true;
 const LOCAL_ONLY=new Set(["fs","autonext","rate","onb"]);
 const DEV_KEYS=new Set(["ldays","listened"]);
-const UNION_KEYS=new Set(["read","completed","done","badges","days"]);
+const UNION_KEYS=new Set(["read","completed","done","badges","days","seen"]);
 const MAP_KEYS=new Set(["pos","prog"]);
-const RESET_KEYS=new Set(["read","days","badges","prog","done","pos","completed","lastRead","last"]);
+const RESET_KEYS=new Set(["read","days","badges","prog","done","pos","completed","lastRead","last","seen","round"]);
 const raw={get(k,d){try{const v=localStorage.getItem("hikmah:"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("hikmah:"+k,JSON.stringify(v))}catch(e){}}};
 const syncable=k=>k&&k[0]!=="_"&&!LOCAL_ONLY.has(k);
 function devId(){let d=raw.get("_dev",null);if(!d){d=Math.random().toString(36).slice(2,10);raw.set("_dev",d)}return d}
@@ -37,6 +37,7 @@ const VALID={
   read:v=>cleanMap(v,k=>KEY_RE.test(k),shortStr), completed:v=>cleanMap(v,k=>KEY_RE.test(k),shortStr), badges:v=>cleanMap(v,k=>KEY_RE.test(k),shortStr),
   likes:v=>cleanMap(v,k=>KEY_RE.test(k),shortStr), done:v=>cleanMap(v,k=>KEY_RE.test(k),x=>x===1||x===true||num(x)),
   days:v=>cleanMap(v,k=>DATE_RE.test(k),num), pos:v=>cleanMap(v,k=>KEY_RE.test(k),num), prog:v=>cleanMap(v,k=>KEY_RE.test(k),num),
+  seen:v=>cleanMap(v,k=>KEY_RE.test(k),x=>num(x)&&x>=1&&x<1e6), round:v=>num(v)&&v>=1&&v<1e6?Math.floor(v):undefined,
   goal:v=>num(v)&&v>=1&&v<=100?v:undefined, interests:v=>Array.isArray(v)?v.filter(x=>str(x,40)).slice(0,40):undefined,
   last:v=>v===null||(str(v,80)&&KEY_RE.test(v))?v:undefined, lastRead:v=>v===null||(str(v,80)&&KEY_RE.test(v))?v:undefined,
   stashes:cleanStashes
@@ -61,7 +62,7 @@ function collect(){
 function unionMap(key,A,B){
   const o={...B};
   for(const x in A){if(!(x in o)){o[x]=A[x];continue}
-    o[x]=key==="days"?Math.max(+A[x]||0,+o[x]||0):(String(A[x])<String(o[x])?A[x]:o[x])}
+    o[x]=key==="days"||key==="seen"?Math.max(+A[x]||0,+o[x]||0):(String(A[x])<String(o[x])?A[x]:o[x])}
   return o;
 }
 function mergeStashes(a,b){
@@ -77,6 +78,7 @@ function mergeDocs(L,R,first){
     if(eL!==eR&&RESET_KEYS.has(k))v=eL>eR?a:b;
     else if(UNION_KEYS.has(k))v=unionMap(k,a||{},b||{});
     else if(a===undefined)v=b;else if(b===undefined)v=a;
+    else if(k==="round")v=Math.max(+a||1,+b||1);
     else if(MAP_KEYS.has(k))v=ta>=tb?{...b,...a}:{...a,...b};
     else if(first&&(k==="likes"||k.startsWith("chk:")))v={...b,...a};
     else if(first&&k==="stashes")v=mergeStashes(a,b);
@@ -154,7 +156,7 @@ async function syncNow(opts={}){
   finally{syncing=false;if(syncAgain){syncAgain=false;setTimeout(()=>syncNow(),500)}}
 }
 function afterSyncChange(){
-  try{READ=store.get("read",{});DAYS=store.get("days",{});LIKES=store.get("likes",{});STASHES=store.get("stashes",null)||STASHES}catch(e){}
+  try{READ=store.get("read",{});SEEN=store.get("seen",{});ROUND=store.get("round",1);DAYS=store.get("days",{});LIKES=store.get("likes",{});STASHES=store.get("stashes",null)||STASHES}catch(e){}
   if(!document.body.classList.contains("reader-open")&&!$("#sheet").classList.contains("on")){try{route(true)}catch(e){}}
 }
 /* totals that include every synced device */

@@ -1,6 +1,6 @@
 /* Hikmah 2.0 */
 "use strict";
-const VERSION="3.2.0";
+const VERSION="3.3.0";
 const SITE="https://hikmah-sadiq.github.io/";
 const ASK_URL="https://claude.ai/artifact/HnMjVLK1wRDvbunz2gB6Qs#ask";
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -57,7 +57,7 @@ $$(".ti").forEach(e=>e.innerHTML=icon(e.dataset.i,20));
 
 /* ---------- data ---------- */
 let PK=[],TM={},byId={},CARDS={},ALLIDEAS=[];
-const CAT_ORDER=["Tafsir","Islamic Classics","Character","Heart","Family","Guarding the Tongue","Dreams & Deeds","Work & Leadership","Leading People","Thinking & Decisions","Strategy & Execution","Influence & Negotiation","The Good Life","Habits & Productivity","Mind & Meaning","Money & Wealth","Communication & People","African Wisdom","Asia & the Arab World"];
+const CAT_ORDER=["Tafsir","Islamic Classics","Character","Heart","Family","Guarding the Tongue","Dreams & Deeds","Progress Over Perfection","Joy Within Limits","Work & Leadership","Leading People","Thinking & Decisions","Strategy & Execution","Influence & Negotiation","The Good Life","Habits & Productivity","Mind & Meaning","Money & Wealth","Communication & People","African Wisdom","Asia & the Arab World"];
 const LABEL={opening:"Opening",verses:"From the Qur'an",verse:"Understanding the verses",hadith:"From the Sunnah",scholars:"The classical scholars",modern:"Modern thought",nigerian:"Nigerian wisdom",idea:"The big idea",mechanics:"Going deeper",practice:"In the real world",faith:"In the light of the Qur'an",practices:"Practices",closing:"Closing",intro:"Introduction"};
 function splitHead(text){
   const t=String(text).trim(); const m=t.match(/^(.{20,130}?[.!?])\s+(.+)$/s);
@@ -198,8 +198,21 @@ function bindPeople(root){root.querySelectorAll("[data-person]").forEach(b=>b.on
 /* ---------- progress, streaks, likes, stashes ---------- */
 let READ=store.get("read",{}), DAYS=store.get("days",{}), LIKES=store.get("likes",{});
 let STASHES=store.get("stashes",null)||[{id:"saved",name:"Saved ideas",cat:"Character",items:[]}];
+/* reading rounds: an idea read in the current round stays out of Home until every idea has been read */
+let ROUND=store.get("round",1), SEEN=store.get("seen",null);
+if(!SEEN){SEEN={};for(const k in READ)SEEN[k]=1;store.set("seen",SEEN)}
+const isFresh=c=>(SEEN[c.key]||0)<ROUND;
+function freshIdeas(){
+  let f=ALLIDEAS.filter(isFresh);
+  if(!f.length&&ALLIDEAS.length){ROUND++;store.set("round",ROUND);f=ALLIDEAS.slice();setTimeout(()=>toast("You have read every idea in Hikmah. A new round begins."),600)}
+  return f;
+}
+const pkgFresh=p=>(CARDS[p.id]||[]).some(c=>(c.type==="idea"||c.type==="hadith")&&isFresh(c));
+const freshFirst=arr=>[...arr.filter(pkgFresh),...arr.filter(p=>!pkgFresh(p))];
 function markRead(card){
-  if(!card||card.type==="intro"||card.type==="final"||READ[card.key])return;
+  if(!card||card.type==="intro"||card.type==="final")return;
+  if((SEEN[card.key]||0)<ROUND){SEEN[card.key]=ROUND;store.set("seen",SEEN)}
+  if(READ[card.key])return;
   READ[card.key]=today(); store.set("read",READ);
   const d=today(); DAYS[d]=(DAYS[d]||0)+1; store.set("days",DAYS);
   if(DAYS[d]===goal()) toast("Daily goal reached. Your streak is safe today.");
@@ -258,16 +271,21 @@ function renderHome(){
   const t=today(), n=DAYS[t]||0, g=goal(), st=streak(), h=new Date().getHours();
   const hello=h<12?"Good morning":h<17?"Good afternoon":"Good evening";
   const pct=Math.min(1,n/g), C=2*Math.PI*32;
+  if(!store.get("_jl1")){const i3=store.get("interests",[]);if(i3.length&&!i3.includes("Joy Within Limits"))store.set("interests",[...i3,"Joy Within Limits"]);store.set("_jl1",1)}
+  if(!store.get("_pp1")){const i2=store.get("interests",[]);if(i2.length&&!i2.includes("Progress Over Perfection"))store.set("interests",[...i2,"Progress Over Perfection"]);store.set("_pp1",1)}
   if(!store.get("_gt1")){const i1=store.get("interests",[]);if(i1.length&&!i1.includes("Guarding the Tongue"))store.set("interests",[...i1,"Guarding the Tongue"]);store.set("_gt1",1)}
   if(!store.get("_dd1")){const i0=store.get("interests",[]);if(i0.length&&!i0.includes("Dreams & Deeds"))store.set("interests",[...i0,"Dreams & Deeds"]);store.set("_dd1",1)}
   const interests=store.get("interests",[]);
-  const pool=ALLIDEAS.filter(c=>!interests.length||interests.includes(byId[c.pid].cat));
-  const iotd=seeded(ALLIDEAS.filter(c=>c.type==="idea"&&c.h.length<110),"iotd"+t,1)[0];
-  const forYou=seeded(pool.filter(c=>!READ[c.key]&&c.key!==iotd?.key),"fy"+t,8);
-  const books=PK.filter(p=>p.kind==="book");
-  const thinkers=PK.filter(p=>p.kind==="thinker");
-  const islamic=PK.filter(p=>p.cat==="Tafsir"||p.cat==="Islamic Classics");
-  const fresh=PK.filter(p=>p.cat==="Guarding the Tongue");
+  const fresh0=freshIdeas(), mine=c=>!interests.length||interests.includes(byId[c.pid].cat);
+  const iotdPool=fresh0.filter(c=>c.type==="idea"&&c.h.length<110);
+  const iotd=seeded(iotdPool.length?iotdPool:fresh0,"iotd"+t,1)[0];
+  const rest=fresh0.filter(c=>c.key!==iotd?.key);
+  let forYou=seeded(rest.filter(mine),"fy"+t,8);
+  if(forYou.length<8)forYou=forYou.concat(seeded(rest.filter(c=>!mine(c)),"fx"+t,8-forYou.length));
+  const books=freshFirst(seeded(PK.filter(p=>p.kind==="book"),"bk"+t,999));
+  const thinkers=freshFirst(seeded(PK.filter(p=>p.kind==="thinker"),"th"+t,999));
+  const islamic=freshFirst(PK.filter(p=>p.cat==="Tafsir"||p.cat==="Islamic Classics"));
+  const fresh=freshFirst(PK.filter(p=>["slips","doneperfect","seveneight","laughter","noexpect","sixwords","clearspeak","rejoice","anhour","alchemy","pleasuretrap","nottoomuch","guardrails"].includes(p.id)));
   const pos=store.get("pos",{}), lastR=store.get("lastRead",null), lp=lastR&&byId[lastR];
   const cont=lp&&pos[lastR]!=null&&pos[lastR]<CARDS[lastR].length-1?`<button class="cont" id="cont-read"><div class="art">${cover(lp.id,lp.cat,{ratio:"square",small:true})}</div><div style="flex:1;min-width:0"><small>Continue reading</small><b>${esc(lp.title)}</b><div class="bar"><i style="width:${((pos[lastR]+1)/CARDS[lastR].length*100).toFixed(0)}%"></i></div></div><span class="play-o">${icon("book",20)}</span></button>`:"";
   const cats=CAT_ORDER.filter(c=>PK.some(p=>p.cat===c));
@@ -282,16 +300,16 @@ function renderHome(){
    ${iotd?`<button class="iotd" data-k="${iotd.key}"><div class="art">${cover("iotd"+t,byId[iotd.pid].cat,{ratio:"wide"})}<span class="badge">Idea of the day</span></div><div class="txt"><h3>${prov(plainProv(iotd.h))}</h3><p>${esc(plainProv(iotd.body))}</p><div class="from"><span class="dot" style="background:${topicOf(byId[iotd.pid].cat).c1}"></span>${esc(byId[iotd.pid].title)}</div></div></button>`:""}
    <div class="h-sec"><h2>For you today</h2><a href="#you" id="edit-int">Your topics</a></div>
    <div class="rail">${forYou.map(icardHTML).join("")}</div>
-   ${fresh.length?`<div class="h-sec"><h2>New: Guarding the Tongue</h2><button data-cat="Guarding the Tongue">See all</button></div>
+   ${fresh.length?`<div class="h-sec"><h2>Just added</h2><button data-cat="Joy Within Limits">See all</button></div>
    <div class="rail">${fresh.map(covHTML).join("")}</div>`:""}
    <div class="h-sec"><h2>New: book summaries</h2><button data-cat="Books">See all</button></div>
-   <div class="rail">${seeded(books,"bk"+t,10).map(covHTML).join("")}</div>
+   <div class="rail">${books.slice(0,10).map(covHTML).join("")}</div>
    <div class="h-sec"><h2>Topics</h2></div>
    <div class="topics">${cats.map(c=>{const T=topicOf(c);return `<button class="topic" data-cat="${esc(c)}" style="background:linear-gradient(135deg,${T.c1},${T.c2})">${topicIcon(c,84).replace('<svg','<svg class="bgi"')}<b>${esc(c)}</b><span>${PK.filter(p=>p.cat===c).length} packages</span></button>`}).join("")}</div>
    <div class="h-sec"><h2>From the Qur'an & the scholars</h2><button data-cat="Tafsir">See all</button></div>
    <div class="rail">${islamic.map(covHTML).join("")}</div>
    <div class="h-sec"><h2>The great thinkers</h2><button data-cat="Thinkers">See all</button></div>
-   <div class="rail">${seeded(thinkers,"th"+t,12).map(covHTML).join("")}</div>
+   <div class="rail">${thinkers.slice(0,12).map(covHTML).join("")}</div>
    <p class="srcnote">${PK.length} packages · ${ALLIDEAS.length} ideas · ${(Object.values(TM).reduce((a,x)=>a+x.dur,0)/3600).toFixed(1)} hours of narration</p>`;
   bindCommon($("#home"));
   $("#cont-read")&&($("#cont-read").onclick=()=>openReader(lastR,pos[lastR]));
@@ -483,6 +501,7 @@ function renderYou(){
    <div class="kpis">
     <div class="kpi"><span class="ic" style="background:#FF6A3D">${icon("flame",18)}</span><b>${best}</b><small>Best streak</small></div>
     <div class="kpi"><span class="ic" style="background:#6D4AFF">${icon("spark",18)}</span><b>${totalRead()}</b><small>Ideas read</small></div>
+    <div class="kpi" style="grid-column:1/-1"><span class="ic" style="background:#7C3AED">${icon("book",18)}</span><b>${ALLIDEAS.length-ALLIDEAS.filter(isFresh).length}<span style="font-size:13px;opacity:.6"> / ${ALLIDEAS.length}</span></b><small>Read this round${ROUND>1?` (round ${ROUND})`:""}</small></div>
     <div class="kpi"><span class="ic" style="background:#16A34A">${icon("check",18)}</span><b>${done}</b><small>Packages finished</small></div>
     <div class="kpi"><span class="ic" style="background:#0891B2">${icon("head",18)}</span><b>${mins}</b><small>Minutes listened</small></div></div>
    <div class="h-sec"><h2>Badges</h2></div>
@@ -515,7 +534,7 @@ function renderYou(){
   $("#autonext").onchange=e=>store.set("autonext",e.target.checked);
   $("#edit-topics").onclick=()=>openOnboarding(1,true);
   $("#sync-row").onclick=openSync;$("#bk-save").onclick=saveBackup;$("#bk-load").onclick=loadBackup;$("#repair").onclick=repairApp;paintSyncRow();$("#dl-all").onclick=downloadAll; $("#dl-clear").onclick=clearDownloads;
-  $("#reset-prog").onclick=()=>{openSheet(`<h3>Reset all progress?</h3><p class="muted">Your stashes stay. Reading history, streaks, badges and listening progress are cleared.</p><div class="cta"><button class="btn soft" id="rs-no">Cancel</button><button class="btn primary" id="rs-yes">Reset</button></div>`);$("#rs-no").onclick=closeSheet;$("#rs-yes").onclick=()=>{["read","days","badges","prog","done","pos","completed","listened","lastRead","last","ldays"].forEach(k=>store.set(k,k==="last"||k==="lastRead"?null:{}));store.set("listened",0);raw.set("_others",{});raw.set("_epoch",Date.now());READ={};DAYS={};closeSheet();renderYou();toast("Progress reset")}};
+  $("#reset-prog").onclick=()=>{openSheet(`<h3>Reset all progress?</h3><p class="muted">Your stashes stay. Reading history, streaks, badges and listening progress are cleared.</p><div class="cta"><button class="btn soft" id="rs-no">Cancel</button><button class="btn primary" id="rs-yes">Reset</button></div>`);$("#rs-no").onclick=closeSheet;$("#rs-yes").onclick=()=>{["read","days","badges","prog","done","pos","completed","listened","lastRead","last","ldays","seen"].forEach(k=>store.set(k,k==="last"||k==="lastRead"?null:{}));store.set("round",1);ROUND=1;SEEN={};store.set("listened",0);raw.set("_others",{});raw.set("_epoch",Date.now());READ={};DAYS={};closeSheet();renderYou();toast("Progress reset")}};
   renderCal();
   refreshOffline();
 }

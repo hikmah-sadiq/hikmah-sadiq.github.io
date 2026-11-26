@@ -3316,5 +3316,259 @@
   "aliases": [
    "Abubakar Imam"
   ]
+ },
+ {
+  "id": "voltaire",
+  "name": "Voltaire",
+  "years": "1694–1778",
+  "place": "Paris, France",
+  "group": "Modern thinkers",
+  "role": "Writer and philosopher",
+  "bio": "François-Marie Arouet, known as Voltaire, was a leading writer of the French Enlightenment, famous for his wit, satire and defence of free expression.",
+  "achievements": [
+   "Leading figure of the French Enlightenment"
+  ],
+  "works": [
+   [
+    "Candide",
+    "1759"
+   ],
+   [
+    "Philosophical Dictionary",
+    "1764"
+   ]
+  ],
+  "aliases": [
+   "Voltaire"
+  ]
+ },
+ {
+  "id": "hoffman",
+  "name": "Reid Hoffman",
+  "years": "b. 1967",
+  "place": "California, USA",
+  "group": "Modern thinkers",
+  "role": "Entrepreneur and investor",
+  "bio": "Reid Hoffman co-founded LinkedIn and was an early executive at PayPal. He hosts the Masters of Scale podcast on building companies.",
+  "achievements": [
+   "Co-founded LinkedIn"
+  ],
+  "works": [
+   [
+    "The Start-up of You",
+    "2012"
+   ],
+   [
+    "Blitzscaling",
+    "2018"
+   ]
+  ],
+  "aliases": [
+   "Reid Hoffman",
+   "Hoffman"
+  ]
+ },
+ {
+  "id": "dangote",
+  "name": "Aliko Dangote",
+  "years": "b. 1957",
+  "place": "Kano · Lagos, Nigeria",
+  "group": "African voices",
+  "role": "Industrialist",
+  "bio": "Born in Kano, Dangote studied business at Al-Azhar University in Cairo, started a trading company in 1977 and built the Dangote Group into one of Africa's largest industrial groups, from cement to a major oil refinery.",
+  "achievements": [
+   "Founded the Dangote Group",
+   "Built Africa's largest cement producer"
+  ],
+  "works": [],
+  "aliases": [
+   "Aliko Dangote",
+   "Dangote"
+  ]
+ },
+ {
+  "id": "blakely",
+  "name": "Sara Blakely",
+  "years": "b. 1971",
+  "place": "Atlanta, USA",
+  "group": "Modern thinkers",
+  "role": "Entrepreneur",
+  "bio": "Sara Blakely founded the clothing company Spanx with her own savings while selling fax machines, and built it into a large international business.",
+  "achievements": [
+   "Founded Spanx"
+  ],
+  "works": [],
+  "aliases": [
+   "Sara Blakely",
+   "Blakely"
+  ]
+ },
+ {
+  "id": "beckett",
+  "name": "Samuel Beckett",
+  "years": "1906–1989",
+  "place": "Dublin, Ireland · Paris, France",
+  "group": "Modern thinkers",
+  "role": "Writer and playwright",
+  "bio": "An Irish novelist and playwright known for spare, searching works such as Waiting for Godot. He received the Nobel Prize in Literature in 1969.",
+  "achievements": [
+   "Nobel Prize in Literature, 1969"
+  ],
+  "works": [
+   [
+    "Waiting for Godot",
+    "1953"
+   ],
+   [
+    "Worstward Ho",
+    "1983"
+   ]
+  ],
+  "aliases": [
+   "Samuel Beckett",
+   "Beckett"
+  ]
+ },
+ {
+  "id": "chesterfield",
+  "name": "Lord Chesterfield",
+  "years": "1694–1773",
+  "place": "London, England",
+  "group": "Modern thinkers",
+  "role": "Statesman and letter-writer",
+  "bio": "Philip Stanhope, 4th Earl of Chesterfield, was a British statesman best remembered for the hundreds of letters of advice he wrote to his son, later published as Letters to His Son.",
+  "achievements": [
+   "Author of the famous Letters to His Son"
+  ],
+  "works": [
+   [
+    "Letters to His Son",
+    "1774"
+   ]
+  ],
+  "aliases": [
+   "Lord Chesterfield",
+   "Chesterfield"
+  ]
+ },
+ {
+  "id": "minto",
+  "name": "Barbara Minto",
+  "years": "at McKinsey from 1963",
+  "place": "New York · London",
+  "group": "Modern thinkers",
+  "role": "Consultant and writing teacher",
+  "bio": "Barbara Minto joined McKinsey in the 1960s as one of its first women consultants and developed the Pyramid Principle, a method of structured, answer-first writing taught to consultants worldwide.",
+  "achievements": [
+   "Developed the Pyramid Principle"
+  ],
+  "works": [
+   [
+    "The Pyramid Principle",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Barbara Minto",
+   "Minto"
+  ]
+ },
+ {
+  "id": "lembke",
+  "name": "Anna Lembke",
+  "years": "b. 1967",
+  "place": "Stanford University, USA",
+  "group": "Modern thinkers",
+  "role": "Psychiatrist and addiction specialist",
+  "bio": "A professor of psychiatry at Stanford and chief of its addiction medicine clinic, Lembke writes about how modern abundance affects the brain's balance of pleasure and pain.",
+  "achievements": [
+   "Leads Stanford's addiction medicine clinic"
+  ],
+  "works": [
+   [
+    "Dopamine Nation",
+    "2021"
+   ]
+  ],
+  "aliases": [
+   "Anna Lembke",
+   "Lembke"
+  ]
+ },
+ {
+  "id": "csikszentmihalyi",
+  "name": "Mihaly Csikszentmihalyi",
+  "years": "1934–2021",
+  "place": "University of Chicago, USA",
+  "group": "Modern thinkers",
+  "role": "Psychologist",
+  "bio": "A Hungarian-American psychologist who studied what makes experience satisfying and named the state of deep, absorbed engagement 'flow'.",
+  "achievements": [
+   "Developed the concept of flow"
+  ],
+  "works": [
+   [
+    "Flow",
+    "1990"
+   ]
+  ],
+  "aliases": [
+   "Mihaly Csikszentmihalyi",
+   "Csikszentmihalyi"
+  ]
+ },
+ {
+  "id": "epicurus",
+  "name": "Epicurus",
+  "years": "341–270 BCE",
+  "place": "Samos · Athens",
+  "group": "Ancient philosophers",
+  "role": "Philosopher",
+  "bio": "Epicurus founded a school in Athens known as the Garden. He taught that a good life is a calm one, free from bodily pain and mental trouble, built on simple pleasures and friendship.",
+  "achievements": [
+   "Founded the Epicurean school"
+  ],
+  "works": [
+   [
+    "Letter to Menoeceus",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Epicurus"
+  ]
+ },
+ {
+  "id": "salman",
+  "name": "Salman al-Farisi",
+  "years": "d. c. 656",
+  "place": "Persia · Madinah · al-Mada'in",
+  "group": "Companions & early generations",
+  "role": "Companion of the Prophet",
+  "bio": "Born in Persia, Salman travelled for years in search of the true religion before finding the Prophet in Madinah. He suggested digging the trench in the Battle of the Trench and later governed al-Mada'in.",
+  "achievements": [
+   "Proposed the trench at the Battle of the Trench"
+  ],
+  "works": [],
+  "aliases": [
+   "Salman al-Farisi",
+   "Salman"
+  ]
+ },
+ {
+  "id": "abudarda",
+  "name": "Abu al-Darda'",
+  "years": "d. c. 652",
+  "place": "Madinah · Damascus",
+  "group": "Companions & early generations",
+  "role": "Companion of the Prophet",
+  "bio": "A Companion known for his learning and worship, Abu al-Darda' taught the Qur'an in Damascus and served as a judge there. Many wise sayings are reported from him.",
+  "achievements": [
+   "Teacher of the Qur'an in Damascus"
+  ],
+  "works": [],
+  "aliases": [
+   "Abu al-Darda'"
+  ]
  }
 ]
