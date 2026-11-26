@@ -20,7 +20,8 @@ const TOPICS = {
   "Dreams & Deeds":          {c1:"#312E81", c2:"#F59E0B", ink:"#1E1B4B", motifs:["cloud","road","hourglass","seedling"]},
   "Guarding the Tongue":     {c1:"#0F5257", c2:"#E9C46A", ink:"#062A2D", motifs:["chat","key","scales","quill"]},
   "Progress Over Perfection":{c1:"#9A3412", c2:"#FCD34D", ink:"#431407", motifs:["seedling","road","target","loop"]},
-  "Joy Within Limits":       {c1:"#1D4ED8", c2:"#FDBA74", ink:"#172554", motifs:["sun","drum","scales","heart"]}
+  "Joy Within Limits":       {c1:"#1D4ED8", c2:"#FDBA74", ink:"#172554", motifs:["sun","drum","scales","heart"]},
+  "Enterprise & Value":      {c1:"#065F46", c2:"#FBBF24", ink:"#022C22", motifs:["coins","compass","bridge","seedling"]}
 };
 const W = "#FFFFFF";
 const MOTIFS = {

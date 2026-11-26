@@ -3570,5 +3570,124 @@
   "aliases": [
    "Abu al-Darda'"
   ]
+ },
+ {
+  "id": "shaybani",
+  "name": "Muhammad ibn al-Hasan al-Shaybani",
+  "years": "c. 749–805",
+  "place": "Wasit · Kufa · Baghdad",
+  "group": "Classical scholars",
+  "role": "Hanafi jurist",
+  "bio": "A leading student of Abu Hanifah and Abu Yusuf, al-Shaybani recorded much of the early Hanafi school's law and wrote Kitab al-Kasb, an early work on the duty of earning a living.",
+  "achievements": [
+   "Recorded the foundations of Hanafi law",
+   "Wrote Kitab al-Kasb on earning"
+  ],
+  "works": [
+   [
+    "Kitab al-Kasb",
+    ""
+   ],
+   [
+    "Al-Siyar al-Kabir",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Muhammad ibn al-Hasan al-Shaybani",
+   "al-Shaybani"
+  ]
+ },
+ {
+  "id": "khadijah",
+  "name": "Khadijah bint Khuwaylid",
+  "years": "d. c. 619",
+  "place": "Makkah",
+  "group": "Companions & early generations",
+  "role": "Businesswoman, wife of the Prophet",
+  "bio": "A respected merchant of Makkah, Khadijah employed the young Muhammad to trade her goods in Syria and later married him. She was the first person to believe in his message and supported him with her wealth.",
+  "achievements": [
+   "First believer in Islam",
+   "Successful merchant and investor"
+  ],
+  "works": [],
+  "aliases": [
+   "Khadijah bint Khuwaylid",
+   "Khadijah"
+  ]
+ },
+ {
+  "id": "uthman",
+  "name": "'Uthman ibn 'Affan",
+  "years": "c. 576–656",
+  "place": "Makkah · Madinah",
+  "group": "Companions & early generations",
+  "role": "Third caliph",
+  "bio": "A wealthy merchant and early convert, 'Uthman used his wealth generously for the Muslims, buying the well of Rumah for public use and equipping the army of Tabuk. As caliph he oversaw the compilation of the standard Qur'an.",
+  "achievements": [
+   "Bought the well of Rumah as an endowment",
+   "Compiled the standard copy of the Qur'an"
+  ],
+  "works": [],
+  "aliases": [
+   "'Uthman ibn 'Affan",
+   "'Uthman"
+  ]
+ },
+ {
+  "id": "kroc",
+  "name": "Ray Kroc",
+  "years": "1902–1984",
+  "place": "Illinois · California, USA",
+  "group": "Modern thinkers",
+  "role": "Businessman",
+  "bio": "A salesman of paper cups and milkshake mixers for decades, Kroc began franchising the McDonald brothers' restaurant in his fifties and built it into a global company.",
+  "achievements": [
+   "Built McDonald's into a global franchise"
+  ],
+  "works": [
+   [
+    "Grinding It Out",
+    "1977"
+   ]
+  ],
+  "aliases": [
+   "Ray Kroc",
+   "Kroc"
+  ]
+ },
+ {
+  "id": "sanders",
+  "name": "Harland Sanders",
+  "years": "1890–1980",
+  "place": "Kentucky, USA",
+  "group": "Modern thinkers",
+  "role": "Founder of Kentucky Fried Chicken",
+  "bio": "After running a roadside restaurant for years, Sanders began franchising his chicken recipe in his sixties and turned it into an international chain.",
+  "achievements": [
+   "Founded Kentucky Fried Chicken franchising in his sixties"
+  ],
+  "works": [],
+  "aliases": [
+   "Harland Sanders",
+   "Colonel Sanders"
+  ]
+ },
+ {
+  "id": "elumelu",
+  "name": "Tony Elumelu",
+  "years": "b. 1963",
+  "place": "Lagos, Nigeria",
+  "group": "African voices",
+  "role": "Banker, investor and philanthropist",
+  "bio": "Chairman of Heirs Holdings and the United Bank for Africa, Elumelu promotes Africapitalism, the idea that Africa's private sector should lead its development. His foundation funds and trains African entrepreneurs.",
+  "achievements": [
+   "Founded the Tony Elumelu Foundation entrepreneurship programme"
+  ],
+  "works": [],
+  "aliases": [
+   "Tony Elumelu",
+   "Elumelu"
+  ]
  }
 ]
