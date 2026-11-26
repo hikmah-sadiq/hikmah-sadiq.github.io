@@ -3097,5 +3097,224 @@
    "J. F. Odunjo",
    "Odunjo"
   ]
+ },
+ {
+  "id": "zeno",
+  "name": "Zeno of Citium",
+  "years": "c. 334–262 BCE",
+  "place": "Citium, Cyprus · Athens",
+  "group": "Ancient philosophers",
+  "role": "Founder of Stoicism",
+  "bio": "A merchant from Cyprus who turned to philosophy after a shipwreck, Zeno taught in the Painted Porch, the Stoa, in Athens, which gave Stoicism its name.",
+  "achievements": [
+   "Founded the Stoic school"
+  ],
+  "works": [
+   [
+    "Republic (lost)",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Zeno of Citium",
+   "Zeno"
+  ]
+ },
+ {
+  "id": "epictetus",
+  "name": "Epictetus",
+  "years": "c. 50–135",
+  "place": "Hierapolis · Rome · Nicopolis",
+  "group": "Ancient philosophers",
+  "role": "Stoic teacher",
+  "bio": "Born a slave, Epictetus became one of the most influential Stoic teachers after gaining his freedom. His student Arrian recorded his teachings in the Discourses and the short handbook, the Enchiridion.",
+  "achievements": [
+   "Taught that we control our judgements, not events"
+  ],
+  "works": [
+   [
+    "Enchiridion",
+    "c. 125"
+   ],
+   [
+    "Discourses",
+    "c. 108"
+   ]
+  ],
+  "aliases": [
+   "Epictetus"
+  ]
+ },
+ {
+  "id": "plutarch",
+  "name": "Plutarch",
+  "years": "c. 46–119",
+  "place": "Chaeronea, Greece",
+  "group": "Ancient philosophers",
+  "role": "Biographer and essayist",
+  "bio": "A Greek priest at Delphi and prolific writer, Plutarch is famous for his Parallel Lives of Greek and Roman leaders and for his many moral essays, collected as the Moralia.",
+  "achievements": [
+   "Wrote the Parallel Lives",
+   "Author of dozens of moral essays"
+  ],
+  "works": [
+   [
+    "Parallel Lives",
+    ""
+   ],
+   [
+    "Moralia, including On Talkativeness",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Plutarch"
+  ]
+ },
+ {
+  "id": "franklin",
+  "name": "Benjamin Franklin",
+  "years": "1706–1790",
+  "place": "Boston · Philadelphia, USA",
+  "group": "Modern thinkers",
+  "role": "Printer, scientist and statesman",
+  "bio": "A self-taught printer who became a scientist, inventor, diplomat and one of the founders of the United States. In his Autobiography he described his project of practising thirteen virtues.",
+  "achievements": [
+   "Experiments on electricity",
+   "Helped draft the Declaration of Independence"
+  ],
+  "works": [
+   [
+    "Autobiography",
+    "1791"
+   ],
+   [
+    "Poor Richard's Almanack",
+    "1732–1758"
+   ]
+  ],
+  "aliases": [
+   "Benjamin Franklin",
+   "Franklin"
+  ]
+ },
+ {
+  "id": "lincoln",
+  "name": "Abraham Lincoln",
+  "years": "1809–1865",
+  "place": "Kentucky · Illinois, USA",
+  "group": "Modern thinkers",
+  "role": "16th President of the United States",
+  "bio": "Born in a log cabin and largely self-educated, Lincoln led the United States through its civil war and the abolition of slavery. He was known for his patience, humour and careful use of words.",
+  "achievements": [
+   "Issued the Emancipation Proclamation",
+   "Delivered the Gettysburg Address"
+  ],
+  "works": [
+   [
+    "Gettysburg Address",
+    "1863"
+   ]
+  ],
+  "aliases": [
+   "Abraham Lincoln",
+   "Lincoln"
+  ]
+ },
+ {
+  "id": "valluvar",
+  "name": "Thiruvalluvar",
+  "years": "c. 1st century BCE – 5th century CE",
+  "place": "Tamil Nadu, India",
+  "group": "Asian & Arab voices",
+  "role": "Tamil poet and ethicist",
+  "bio": "Little is known of Thiruvalluvar's life, but his Tirukkural, 1,330 short couplets on virtue, wealth and love, is the most celebrated work of Tamil ethics and has been translated into dozens of languages.",
+  "achievements": [
+   "Author of the Tirukkural"
+  ],
+  "works": [
+   [
+    "Tirukkural",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Thiruvalluvar",
+   "Tiruvalluvar"
+  ]
+ },
+ {
+  "id": "laozi",
+  "name": "Laozi",
+  "years": "traditionally 6th century BCE",
+  "place": "China",
+  "group": "Asian & Arab voices",
+  "role": "Sage of early Chinese philosophy",
+  "bio": "Laozi is the traditional author of the Tao Te Ching, a short classic of Chinese thought on simplicity, humility and restraint. Historians debate whether he was a single person.",
+  "achievements": [
+   "Traditional author of the Tao Te Ching"
+  ],
+  "works": [
+   [
+    "Tao Te Ching",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Laozi",
+   "Lao Tzu"
+  ]
+ },
+ {
+  "id": "yunusemre",
+  "name": "Yunus Emre",
+  "years": "c. 1238–1320",
+  "place": "Anatolia (Turkey)",
+  "group": "Asian & Arab voices",
+  "role": "Poet",
+  "bio": "Yunus Emre wrote simple, heartfelt Turkish poems of faith and love for Allah that are still sung and recited across Turkey. He helped make Turkish a language of literature.",
+  "achievements": [
+   "Pioneer of poetry in Turkish",
+   "Poems still widely recited and sung"
+  ],
+  "works": [
+   [
+    "Divan",
+    ""
+   ],
+   [
+    "Risalat al-Nushiyya",
+    ""
+   ]
+  ],
+  "aliases": [
+   "Yunus Emre"
+  ]
+ },
+ {
+  "id": "abubakarimam",
+  "name": "Abubakar Imam",
+  "years": "1911–1981",
+  "place": "Kagara · Zaria, Nigeria",
+  "group": "African voices",
+  "role": "Hausa writer and journalist",
+  "bio": "One of the founders of modern Hausa literature, Abubakar Imam won a writing competition with Ruwan Bagaja, then wrote Magana Jari Ce in Zaria and became the first editor of the newspaper Gaskiya Ta Fi Kwabo.",
+  "achievements": [
+   "Author of Magana Jari Ce, a Hausa classic",
+   "First editor of Gaskiya Ta Fi Kwabo"
+  ],
+  "works": [
+   [
+    "Ruwan Bagaja",
+    "1934"
+   ],
+   [
+    "Magana Jari Ce",
+    "1937"
+   ]
+  ],
+  "aliases": [
+   "Abubakar Imam"
+  ]
  }
 ]

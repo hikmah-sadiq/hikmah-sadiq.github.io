@@ -1,6 +1,6 @@
 /* Hikmah 2.0 */
 "use strict";
-const VERSION="3.1.0";
+const VERSION="3.2.0";
 const SITE="https://hikmah-sadiq.github.io/";
 const ASK_URL="https://claude.ai/artifact/HnMjVLK1wRDvbunz2gB6Qs#ask";
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -57,7 +57,7 @@ $$(".ti").forEach(e=>e.innerHTML=icon(e.dataset.i,20));
 
 /* ---------- data ---------- */
 let PK=[],TM={},byId={},CARDS={},ALLIDEAS=[];
-const CAT_ORDER=["Tafsir","Islamic Classics","Character","Heart","Family","Dreams & Deeds","Work & Leadership","Leading People","Thinking & Decisions","Strategy & Execution","Influence & Negotiation","The Good Life","Habits & Productivity","Mind & Meaning","Money & Wealth","Communication & People","African Wisdom","Asia & the Arab World"];
+const CAT_ORDER=["Tafsir","Islamic Classics","Character","Heart","Family","Guarding the Tongue","Dreams & Deeds","Work & Leadership","Leading People","Thinking & Decisions","Strategy & Execution","Influence & Negotiation","The Good Life","Habits & Productivity","Mind & Meaning","Money & Wealth","Communication & People","African Wisdom","Asia & the Arab World"];
 const LABEL={opening:"Opening",verses:"From the Qur'an",verse:"Understanding the verses",hadith:"From the Sunnah",scholars:"The classical scholars",modern:"Modern thought",nigerian:"Nigerian wisdom",idea:"The big idea",mechanics:"Going deeper",practice:"In the real world",faith:"In the light of the Qur'an",practices:"Practices",closing:"Closing",intro:"Introduction"};
 function splitHead(text){
   const t=String(text).trim(); const m=t.match(/^(.{20,130}?[.!?])\s+(.+)$/s);
@@ -258,6 +258,7 @@ function renderHome(){
   const t=today(), n=DAYS[t]||0, g=goal(), st=streak(), h=new Date().getHours();
   const hello=h<12?"Good morning":h<17?"Good afternoon":"Good evening";
   const pct=Math.min(1,n/g), C=2*Math.PI*32;
+  if(!store.get("_gt1")){const i1=store.get("interests",[]);if(i1.length&&!i1.includes("Guarding the Tongue"))store.set("interests",[...i1,"Guarding the Tongue"]);store.set("_gt1",1)}
   if(!store.get("_dd1")){const i0=store.get("interests",[]);if(i0.length&&!i0.includes("Dreams & Deeds"))store.set("interests",[...i0,"Dreams & Deeds"]);store.set("_dd1",1)}
   const interests=store.get("interests",[]);
   const pool=ALLIDEAS.filter(c=>!interests.length||interests.includes(byId[c.pid].cat));
@@ -266,7 +267,7 @@ function renderHome(){
   const books=PK.filter(p=>p.kind==="book");
   const thinkers=PK.filter(p=>p.kind==="thinker");
   const islamic=PK.filter(p=>p.cat==="Tafsir"||p.cat==="Islamic Classics");
-  const fresh=PK.filter(p=>p.cat==="Dreams & Deeds");
+  const fresh=PK.filter(p=>p.cat==="Guarding the Tongue");
   const pos=store.get("pos",{}), lastR=store.get("lastRead",null), lp=lastR&&byId[lastR];
   const cont=lp&&pos[lastR]!=null&&pos[lastR]<CARDS[lastR].length-1?`<button class="cont" id="cont-read"><div class="art">${cover(lp.id,lp.cat,{ratio:"square",small:true})}</div><div style="flex:1;min-width:0"><small>Continue reading</small><b>${esc(lp.title)}</b><div class="bar"><i style="width:${((pos[lastR]+1)/CARDS[lastR].length*100).toFixed(0)}%"></i></div></div><span class="play-o">${icon("book",20)}</span></button>`:"";
   const cats=CAT_ORDER.filter(c=>PK.some(p=>p.cat===c));
@@ -281,7 +282,7 @@ function renderHome(){
    ${iotd?`<button class="iotd" data-k="${iotd.key}"><div class="art">${cover("iotd"+t,byId[iotd.pid].cat,{ratio:"wide"})}<span class="badge">Idea of the day</span></div><div class="txt"><h3>${prov(plainProv(iotd.h))}</h3><p>${esc(plainProv(iotd.body))}</p><div class="from"><span class="dot" style="background:${topicOf(byId[iotd.pid].cat).c1}"></span>${esc(byId[iotd.pid].title)}</div></div></button>`:""}
    <div class="h-sec"><h2>For you today</h2><a href="#you" id="edit-int">Your topics</a></div>
    <div class="rail">${forYou.map(icardHTML).join("")}</div>
-   ${fresh.length?`<div class="h-sec"><h2>New: Dreams &amp; Deeds</h2><button data-cat="Dreams & Deeds">See all</button></div>
+   ${fresh.length?`<div class="h-sec"><h2>New: Guarding the Tongue</h2><button data-cat="Guarding the Tongue">See all</button></div>
    <div class="rail">${fresh.map(covHTML).join("")}</div>`:""}
    <div class="h-sec"><h2>New: book summaries</h2><button data-cat="Books">See all</button></div>
    <div class="rail">${seeded(books,"bk"+t,10).map(covHTML).join("")}</div>
